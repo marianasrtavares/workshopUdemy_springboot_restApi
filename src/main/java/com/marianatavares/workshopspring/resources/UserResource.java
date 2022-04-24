@@ -1,14 +1,17 @@
 package com.marianatavares.workshopspring.resources;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.marianatavares.workshopspring.config.dto.UserDTO;
 import com.marianatavares.workshopspring.domain.User;
@@ -33,6 +36,15 @@ public class UserResource {
 	public ResponseEntity<UserDTO> findById(@PathVariable String id){
 		UserDTO user = new UserDTO(service.findById(id));
 	 return ResponseEntity.ok().body(user);
+	}
+	
+	@RequestMapping(method= RequestMethod.POST)
+	public ResponseEntity<Void> insert (@RequestBody UserDTO obj) {
+		User user= service.insert(service.fromDTO(obj));
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+				
+		
 	}
 	
 	

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.marianatavares.workshopspring.config.dto.UserDTO;
 import com.marianatavares.workshopspring.domain.User;
 import com.marianatavares.workshopspring.repository.UserRepository;
 import com.marianatavares.workshopspring.service.exception.ObjectNotFoundException;
@@ -26,6 +27,15 @@ public class UserService {
 			throw new ObjectNotFoundException("Object not found");
 		}
 		return user.get();
+	}
+	
+	public User insert(User obj) {
+		return repo.save(obj);
+	}
+	
+	public User fromDTO(UserDTO userDto) {
+		User user= new User(userDto.getId(), userDto.getName(), userDto.getEmail());
+		return user;
 	}
 
 }
