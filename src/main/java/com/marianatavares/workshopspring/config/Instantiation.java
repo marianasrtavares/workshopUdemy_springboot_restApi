@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
+import com.marianatavares.workshopspring.config.dto.AuthorDTO;
 import com.marianatavares.workshopspring.domain.Post;
 import com.marianatavares.workshopspring.domain.User;
 import com.marianatavares.workshopspring.repository.PostRepository;
@@ -34,8 +35,8 @@ public class Instantiation implements CommandLineRunner {
 	  
 	    userRepo.saveAll(Arrays.asList(maria,alex,bob));
 	    
-	    Post post1 = new Post (null, sdf.parse("2018-03-21"), "Partiu viagem","Vou viajar para São Paulo. Abraços!",maria);
-	    Post post2 = new Post (null, sdf.parse("2018-03-23"), "Bom dia","Acordei feliz hoje!",maria);
+	    Post post1 = new Post (null, sdf.parse("2018-03-21"), "Partiu viagem","Vou viajar para São Paulo. Abraços!", new AuthorDTO(maria));
+	    Post post2 = new Post (null, sdf.parse("2018-03-23"), "Bom dia","Acordei feliz hoje!",new AuthorDTO(maria));
 
 	    postRepo.saveAll(Arrays.asList(post1,post2));
 	    
