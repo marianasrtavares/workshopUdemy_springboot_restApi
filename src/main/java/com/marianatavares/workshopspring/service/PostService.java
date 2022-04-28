@@ -1,5 +1,6 @@
 package com.marianatavares.workshopspring.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.marianatavares.workshopspring.domain.Post;
 import com.marianatavares.workshopspring.repository.PostRepository;
-import com.marianatavares.workshopspring.service.exception.ObjectNotFoundException;
+import com.marianatavares.workshopspring.resources.exceptions.ObjectNotFoundException;
 
 @Service
 public class PostService {
@@ -23,6 +24,10 @@ public class PostService {
 		}else {
 			return post.get();
 		}
+	}
+	
+	public List<Post> findByTitle (String text){
+		return postRepo.searchTitle(text);
 	}
 
 }

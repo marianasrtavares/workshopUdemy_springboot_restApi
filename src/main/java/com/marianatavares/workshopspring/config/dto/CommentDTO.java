@@ -21,6 +21,14 @@ public class CommentDTO implements Serializable{
 	}
 
 	
+	public AuthorDTO getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(AuthorDTO author) {
+		this.author = author;
+	}
+
 	public String getText() {
 		return text;
 	}

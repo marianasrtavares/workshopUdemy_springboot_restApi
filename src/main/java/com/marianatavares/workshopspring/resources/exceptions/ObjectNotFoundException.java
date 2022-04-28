@@ -1,4 +1,4 @@
-package com.marianatavares.workshopspring.service.exception;
+package com.marianatavares.workshopspring.resources.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException{
 

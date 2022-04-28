@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.marianatavares.workshopspring.config.dto.UserDTO;
 import com.marianatavares.workshopspring.domain.User;
 import com.marianatavares.workshopspring.repository.UserRepository;
-import com.marianatavares.workshopspring.service.exception.ObjectNotFoundException;
+import com.marianatavares.workshopspring.resources.exceptions.ObjectNotFoundException;
 
 @Service
 public class UserService {
