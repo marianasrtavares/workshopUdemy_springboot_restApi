@@ -1,9 +1,9 @@
 package com.marianatavares.workshopspring.resources;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +31,15 @@ public class PostResource {
 	@RequestMapping(value="/titlesearch", method= RequestMethod.GET)
 	public ResponseEntity<List<Post>> findByTilte(@RequestParam(value="text",defaultValue="") String text){
 		List <Post> list=postService.findByTitle(URL.decodeParam(text));
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@RequestMapping(value="fullsearch", method= RequestMethod.GET)
+	public ResponseEntity<List<Post>> fullSearch(
+			@RequestParam(value="text", defaultValue="") String text, 
+			@RequestParam(value="inicialDate", defaultValue="")String inicialDate, 
+			@RequestParam(value="finalDate", defaultValue="")String finalDate){
+		List<Post> list= postService.fullSearch(URL.decodeParam(text), URL.decodeDateParam(inicialDate, new Date(0L)), URL.decodeDateParam(finalDate, new Date()));
 		return ResponseEntity.ok().body(list);
 	}
 }
